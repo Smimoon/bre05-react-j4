@@ -2,26 +2,26 @@ import {useState} from 'react';
 
 const Login = (props) => {
     const[log, setLog] = useState({email : "", password : ""});
-    
-    const handleChange = (props) => {
+    const handleChange = (event) => {
         console.log(event.target.value);
     };
-    const handleSubmit = (props) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        setLog(event.target.email.value, event.target.password.value);
+        let newLog = Object.assign({}, log, {email : event.target.email.value, password : event.target.password.value });
+        setLog(newLog);
     };
     if(log.email === "" || log.password === "") {
         return(
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlfor="email">
-                        Email
+                    <label htmlFor="email">
+                        Email :
                     </label>
                     <input type="email" name="email" id="email" onChange={handleChange} />
                 </div>
                 <div>
-                    <label htmlfor="password">
-                        Password
+                    <label htmlFor="password">
+                        Password :
                     </label>
                     <input type="password" name="password" id="password" onChange={handleChange}/>
                 </div>
